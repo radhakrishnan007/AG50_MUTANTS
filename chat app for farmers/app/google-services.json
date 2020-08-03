@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "299313103075",
+    "firebase_url": "https://mutants0.firebaseio.com",
+    "project_id": "mutants0",
+    "storage_bucket": "mutants0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:299313103075:android:277c672a60fe03a67a05d6",
+        "android_client_info": {
+          "package_name": "com.example.mutants"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "299313103075-bduu9hd558kq1m4sd9o12f59v20ce8q1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWq_PqsIlLET3gfbq1TZtLCiO9CbwMq1s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "299313103075-bduu9hd558kq1m4sd9o12f59v20ce8q1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
