@@ -11,7 +11,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 // Include config file
 require_once "db/config.php";
 //Define variables and initialize with empty values
-$username = $password = $first_name= $last_name="";
+$username = $password = $first_name= $last_name=$area="";
 $username_err = $password_err = "";
  
 // Processing form data when form is submitted
@@ -34,7 +34,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT registration_id,mobile_no,first_name,last_name, login_password FROM smfr_former_registration WHERE mobile_no = ?";
+        $sql = "SELECT registration_id,mobile_no,first_name,last_name,area,login_password FROM smfr_former_registration WHERE mobile_no = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -44,6 +44,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_username = $username;
             $param_first_name=$first_name;
             $param_last_name=$last_name;
+            $param_area=$area;
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
@@ -53,7 +54,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Check if username exists, if yes then verify password
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $registration_id, $username, $first_name,$last_name,$hashed_password);
+                    mysqli_stmt_bind_result($stmt, $registration_id, $username, $first_name,$last_name,$area,$hashed_password);
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session
@@ -64,7 +65,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["id"] = $registration_id;
                             $_SESSION["username"] = $username; 
                             $_SESSION["firstname"]=$first_name; 
-                            $_SESSION["lastname"]=$last_name;                         
+                            $_SESSION["lastname"]=$last_name; 
+                            $_SESSION["area"]=$area;                         
                             
                             // Redirect user to welcome page
                             header("location: farmer_profile.php");
@@ -103,9 +105,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 <table align="center" width="400" >
 <div class="container">
-<caption><h1><b>Login form</b></h1></caption>
+<caption><h1><b> <p style="color:white;">Farmer Login form</p></b></h1></caption>
 <tr>
-<th>Username</th>
+<th>Mobile No</th>
 <td>
 <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>"></div>
 <input type="text" name="username" id="fn1" maxlength="50" title="Username" placeholder="Enter your username" required value="<?php echo $username_err; ?>">

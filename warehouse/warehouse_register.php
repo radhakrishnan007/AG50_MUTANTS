@@ -1,6 +1,6 @@
 <?php
 // Include config file
-require_once "../db/config.php";
+require_once "db/config.php";
 
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = $warehouse_name= $email= $address= $contact_person= $profile_picture="";

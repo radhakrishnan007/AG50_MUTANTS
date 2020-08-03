@@ -15,6 +15,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <title>Welcome</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="stylesheet" href="css/styles.css">
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <style type="text/css">
         body{ font: 14px sans-serif; text-align: center; }
         .content_block
@@ -26,6 +27,11 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             background-color: #fff;
         }
     </style>
+    <script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
 </head>
 <body>
     <div id="mySidenav" class="sidenav">
@@ -35,6 +41,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
       <a href="order.php" id="order">My Orders</a>
     </div>
     <div class="content_block">
+      <div id="google_translate_element" style="float: right; margin-right: 25px;"></div>
         <div class="page-header">
             <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["firstname"]);echo " "; echo htmlspecialchars($_SESSION["lastname"]); ?></b></h1>
             <p>

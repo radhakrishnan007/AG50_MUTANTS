@@ -7,6 +7,37 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
+// Include config file
+require_once "db/config.php";
+
+$id=$_SESSION["id"];
+$area=$_SESSION["area"];
+
+// echo $area;
+// die;
+
+// Prepare a select statement
+$sql = "SELECT * FROM smfr_warehouse_registration WHERE area ='$area'";
+
+$result = mysqli_query($link, $sql);
+
+if (mysqli_num_rows($result) > 0) {
+  // output data of each row
+$product_count=mysqli_num_rows($result);
+$i=0;
+if($i<$product_count)
+{
+    while($ware_row[$i]=mysqli_fetch_assoc($result))
+    {
+        $i=$i+1;
+    }
+} 
+   
+} else {
+  echo "0 results";
+}
+
+mysqli_close($link);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +61,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 <body>
     <div id="mySidenav" class="sidenav">
       <a href="farmer_profile.php" id="Profile">About me</a>
-      <a href="products.php" id="product">My Products</a>
+      <a href="product.php" id="product">My Products</a>
       <a href="ware.php" id="warehouse">Warehouse</a>
       <a href="order.php" id="order">My Orders</a>
     </div>
@@ -45,37 +76,24 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <div>
 <table id="tab">
 <tr>
-<td>
-  <h1>A.P.Warehouse,Tambaram</h1>
-  <p class='card'><a href="book.html"><button>Book Now</button></p>
+  <?php
+  $r=0;
+  while($r<$product_count)
+  {
+  ?>
+  <td>
+  <h1><?php echo $ware_row[$r]['warehouse_name']?></h1>
+  <p>Location: <?php echo $ware_row[$r]['area']?></p>
+  <p>Contact No: <?php echo $ware_row[$r]['mobile_no']?></p>
+  <p>Contact Person: <?php echo $ware_row[$r]['contact_person_name']?></p>
+  <p class='card'><a href="book.php"><button>Book Now</button></a></p>
   <p class='card'><button>Cancel</button></p>
- </td>
- <td>
-  <h1>G.P.Storehouse,Theni</h1>
-  <p class='card'><a href="book.html"><button>Book Now</button></p>
-  <p class='card'><button>Cancel</button></p>
- </td>
- <td>
-  <h1>S.R Warehouse,Cuddalore</h1>
-  <p class='card'><a href="book.html"><button>Book Now</button></p>
-  <p class='card'><button>Cancel</button></p>
- </td>
-<tr>
-<td>
-  <h1>Gem Warehouse,Kanyakumari</h1>
-  <p class='card'><a href="book.html"><button>Book Now</button></p>
-  <p class='card'><button>Cancel</button></p>
- </td>
- <td>
-  <h1>A.K Warehouse,Chennai</h1>
-  <p class='card'><a href="book.html"><button>Book Now</button></p>
-  <p class='card'><button>Cancel</button></p>
- </td>
- <td>
-  <h1>Stoneage Warehouse,Madurai</h1>
-  <p class='card'><a href="book.html"><button>Book Now</button></p>
-  <p class='card'><button>Cancel</button></p>
-</tr>
+  </td>
+  <?php
+  $r=$r+1;
+  }
+  ?>
+ </tr>
 </div> 
         
     </div>

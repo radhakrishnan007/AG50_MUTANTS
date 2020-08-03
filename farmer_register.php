@@ -3,7 +3,7 @@
 require_once "db/config.php";
 
 // Define variables and initialize with empty values
-$username = $password = $confirm_password = $first_name= $last_name= $email= $address= $gender= $state= $bank_details= $profile_picture="";
+$username = $password = $confirm_password = $first_name= $last_name= $email= $address= $gender= $state= $bank_details= $profile_picture=$area="";
 $username_err = $password_err = $confirm_password_err = "";
 
 // Processing form data when form is submitted
@@ -48,6 +48,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 		            $state = trim($_POST["state"]);
 		            $bank_details = trim($_POST["bank_details"]);
 		            $profile_picture = trim($_POST["profile_picture"]);
+                    $area=trim($_POST["area"]);
                 }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -85,14 +86,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         
         // Prepare an insert statement
         $sql = "INSERT INTO smfr_former_registration 
-        (first_name,last_name,login_password,email,mobile_no,address,gender,state,bank_details,profile_picture) 
-         VALUES (?,?,?,?,?,?,?,?,?,?)";
+        (first_name,last_name,login_password,email,mobile_no,address,gender,state,bank_details,profile_picture,area) 
+         VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
          //$sql1 = "INSERT INTO smfr_former_registration(first_name,last_name,login_password)VALUES(?,?,?)";
 
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssssssssss", $param_first_name,$param_last_name,$param_password,$param_email,$param_username,$param_address,$param_gender,$param_state,$param_bank_details,$param_profile_picture);
+            mysqli_stmt_bind_param($stmt, "sssssssssss", $param_first_name,$param_last_name,$param_password,$param_email,$param_username,$param_address,$param_gender,$param_state,$param_bank_details,$param_profile_picture,$param_area);
 
             //mysqli_stmt_bind_param($stmt1, "sss", $param_first_name,$param_last_name,$param_password);
 
@@ -108,6 +109,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_state = $state;
             $param_bank_details = $bank_details;
             $param_profile_picture = $profile_picture;
+            $param_area=$area;
 
             // echo $param_username."<br>";
             // echo $param_password."<br>";
@@ -192,6 +194,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <th>Address</th>
 <td><textarea rows="8" cols="20" name="address" id="add" title="First name" placeholder="Enter your address" required><?php echo $address; ?></textarea></td>
 </tr>
+<tr>
+<th>Area</th>
+<td><input type="text"name="area" id="b1" title="b1" placeholder="Enter Area" required value="<?php echo $area; ?>"></td>
+</tr>
+<tr>
 <tr>
 <th>Gender</th>
 <td>

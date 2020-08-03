@@ -4,7 +4,7 @@ session_start();
  
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
+    header("location: index.php");
     exit;
 }
 // Include config file
@@ -35,6 +35,7 @@ mysqli_close($link);
     <title>Welcome</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <link rel="stylesheet" href="css/styles.css">
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <style type="text/css">
         body{ font: 14px sans-serif; text-align: center; }
         .content_block
@@ -46,20 +47,29 @@ mysqli_close($link);
             background-color: #fff;
         }
     </style>
+    <script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
 </head>
 <body>
     <div id="mySidenav" class="sidenav">
       <a href="farmer_profile.php" id="Profile">About me</a>
-      <a href="products.php" id="product">My Products</a>
+      <a href="product.php" id="product">My Products</a>
       <a href="ware.php" id="warehouse">Warehouse</a>
       <a href="order.php" id="order">My Orders</a>
+      <a href="product_price.php" id="order">Price</a>
     </div>
     <div class="content_block">
-        <div class="page-header">
+        <div id="google_translate_element" style="float: right; margin-right: 25px;"></div>
+        <div class="page-header">            
             <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["firstname"]);echo " "; echo htmlspecialchars($_SESSION["lastname"]); ?></b></h1>
             <p>
             <a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>
             <a href="logout.php" class="btn btn-danger">Sign Out of Your Account</a>
+            <a href="product_price.php" class="btn btn-warning">Product Price</a>
+            <a href="requirement.php" class="btn btn-warning">Warehouse Requirement</a>
             </p>
         </div>
         <div>
@@ -97,5 +107,6 @@ mysqli_close($link);
         </div>
         
     </div>
+
 </body>
 </html>

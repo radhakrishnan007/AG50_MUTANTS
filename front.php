@@ -87,12 +87,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">Logo</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li class="active"><a href="">Home</a></li>
-        <li><a href="">About</a></li>
+        <li><a href="about.php">About</a></li>
         <li><a href="contact.php">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -105,29 +104,30 @@
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      <img src="images/farmer1.jpg" alt="Jane" style="width:40%">
+      <img src="images/farmer1.jpg" alt="Jane" style="width:60%">
       <p><a href="index.php">Farmer</a></p>
-      <img src="images/ware.jpg" alt="Jane" style="width:40%">
+      <img src="images/ware.jpg" alt="Jane" style="width:60%">
       <p><a href="ind.php">Warehouse</a></p>
-      <img src="images/buyer.jpg" alt="Jane" style="width:40%">
-      <p><a href="">Buyer</a></p>
+      <img src="images/buyer.jpg" alt="Jane" style="width:60%">
+      <p><a href="indi.php">Buyer</a></p>
     </div>
     <div class="col-sm-8 text-left"> 
-      <h1>Welcome</h1>
-      <img src="images/veg.jpg" style="width:50%">
-<h3> It is a free web app which acts as an online market for crop market. It is a one-stop marketplace that is open to all buy or sell crops across India. This app provides the end user to advertise their products  in all languages.</h3>
+      <center>
+      <img src="images/logo.jpg" style="width:25%"></center>
+<h3><p style="font-family:aerial">
+ It is a free web app which acts as an online market for crop market. It is a one-stop marketplace that is open to all buy or sell crops across India. This app provides the end user to advertise their products  in all languages.</p></h3>
       <hr>
     </div>
     <section>
     <div class="col-sm-2 sidenav">
       <div class="well">
-         <img src="images/veg.jpg" style="width:75%">
+         <img src="images/fruit.jpg" style="width:100%">
       </div>
       <div class="well">
-        <img src="images/farm2.jpg" style="width:75%">
+        <img src="images/farm2.jpg" style="width:100%">
       </div>
       <div class="well">
-        <img src="images/rice.jpg" style="width:75%">
+        <img src="images/rice.jpg" style="width:100%">
       </div>
     </div>
   </section>

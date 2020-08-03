@@ -4,7 +4,7 @@ session_start();
  
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: index.php");
+    header("location: ind.php");
     exit;
 }
 // Include config file
@@ -50,9 +50,9 @@ mysqli_close($link);
 <body>
     <div id="mySidenav" class="sidenav">
       <a href="warehouse_profile.php" id="Profile">About me</a>
-      <a href="products.php" id="product">My Products</a>
-      <a href="ware.php" id="warehouse">Warehouse</a>
-      <a href="order.php" id="order">My Orders</a>
+      <a href="product.php" id="product">My Products</a>
+      <a href="stock.php" id="warehouse">Stock Availability</a>
+      <a href="manage.php" id="order">Manage Products</a>
     </div>
     <div class="content_block">
         <div class="page-header">

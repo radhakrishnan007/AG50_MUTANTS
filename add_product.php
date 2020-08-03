@@ -91,6 +91,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       <a href="products.php" id="product">My Products</a>
       <a href="ware.php" id="warehouse">Warehouse</a>
       <a href="order.php" id="order">My Orders</a>
+      <a href="product_price.php" id="order">Price</a>
     </div>
     <div class="content_block">
         <div class="page-header">

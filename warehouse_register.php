@@ -3,7 +3,7 @@
 require_once "db/config.php";
 
 // Define variables and initialize with empty values
-$username = $password = $confirm_password = $warehouse_name= $email= $address= $contact_person= $profile_picture="";
+$username = $password = $confirm_password = $warehouse_name= $email= $address= $contact_person= $profile_picture= $area="";
 $username_err = $password_err = $confirm_password_err = "";
 
 // Processing form data when form is submitted
@@ -45,6 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $address = trim($_POST["address"]);
                     $contact_person = trim($_POST["contact_person"]);
                     $profile_picture = trim($_POST["profile_picture"]);
+                    $area=trim($_POST["area"]);
                 }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
@@ -82,14 +83,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         
         // Prepare an insert statement
         $sql = "INSERT INTO smfr_warehouse_registration 
-        (warehouse_name,mobile_no,email_id,location,login_password,profile_picture,contact_person_name) 
-         VALUES (?,?,?,?,?,?,?)";
+        (warehouse_name,mobile_no,email_id,location,login_password,profile_picture,contact_person_name,area) 
+         VALUES (?,?,?,?,?,?,?,?)";
 
          //$sql1 = "INSERT INTO smfr_former_registration(first_name,last_name,login_password)VALUES(?,?,?)";
 
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sssssss", $param_warehouse_name,$param_username,$param_email,$param_address,$param_password,$param_profile_picture,$param_contact_person_name);
+            mysqli_stmt_bind_param($stmt, "ssssssss", $param_warehouse_name,$param_username,$param_email,$param_address,$param_password,$param_profile_picture,$param_contact_person_name,$param_area);
 
             //mysqli_stmt_bind_param($stmt1, "sss", $param_first_name,$param_last_name,$param_password);
 
@@ -102,6 +103,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_address = $address;
             $param_profile_picture = $profile_picture;            
             $param_contact_person_name = $contact_person;
+            $param_area=$area;
 
             // echo $param_username."<br>";
             // echo $param_password."<br>";
@@ -185,6 +187,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <tr>
 <th>Address</th>
 <td><textarea rows="8" cols="20" name="address" id="add" title="First name" placeholder="Enter your address" required><?php echo $address; ?></textarea></td>
+</tr>
+<tr>
+<tr>
+<th>Area</th>
+<td>
+    <input type="text" name="area" id="em1" maxlength="50" title="Area" placeholder="Enter Area" required value="<?php echo $area; ?>">
+</td>
 </tr>
 <tr>
 
